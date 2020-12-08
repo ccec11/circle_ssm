@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.geminix.circle.util.dao.BadwordinfoDao">
+
+    <resultMap type="top.geminix.circle.util.entity.Badwordinfo" id="BadwordinfoMap">
+        <result property="badWordId" column="badWordId" jdbcType="INTEGER"/>
+        <result property="badWordContent" column="badWordContent" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BadwordinfoMap">
+        select
+        badWordId, badWordContent
+        from circle_blue.badwordinfo
+        where badWordId = #{badwordid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BadwordinfoMap">
+        select
+        badWordId, badWordContent
+        from circle_blue.badwordinfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BadwordinfoMap">
+        select
+        badWordId, badWordContent
+        from circle_blue.badwordinfo
+        <where>
+            <if test="badwordid != null">
+                and badWordId = #{badwordid}
+            </if>
+            <if test="badwordcontent != null and badwordcontent != ''">
+                and badWordContent = #{badwordcontent}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="BadwordinfoMap">
+        select
+        badWordId, badWordContent
+        from circle_blue.badwordinfo
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="badwordid" useGeneratedKeys="true">
+        insert into circle_blue.badwordinfo(badWordContent)
+        values (#{badwordcontent})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="badwordid" useGeneratedKeys="true">
+        insert into circle_blue.badwordinfo(badWordContent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.badwordcontent})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="badwordid" useGeneratedKeys="true">
+        insert into circle_blue.badwordinfo(badWordContent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.badwordcontent})
+        </foreach>
+        on duplicate key update
+        badWordContent = values(badWordContent)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update circle_blue.badwordinfo
+        <set>
+            <if test="badwordcontent != null and badwordcontent != ''">
+                badWordContent = #{badwordcontent},
+            </if>
+        </set>
+        where badWordId = #{badwordid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from circle_blue.badwordinfo where badWordId = #{badwordid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.geminix.circle.util.dao.QuestioninfoDao">
+
+    <resultMap type="top.geminix.circle.util.entity.Questioninfo" id="QuestioninfoMap">
+        <result property="questionId" column="questionId" jdbcType="INTEGER"/>
+        <result property="circleId" column="circleId" jdbcType="INTEGER"/>
+        <result property="questionContent" column="questionContent" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="QuestioninfoMap">
+        select
+        questionId, circleId, questionContent
+        from circle_blue.questioninfo
+        where questionId = #{questionid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="QuestioninfoMap">
+        select
+        questionId, circleId, questionContent
+        from circle_blue.questioninfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="QuestioninfoMap">
+        select
+        questionId, circleId, questionContent
+        from circle_blue.questioninfo
+        <where>
+            <if test="questionid != null">
+                and questionId = #{questionid}
+            </if>
+            <if test="circleid != null">
+                and circleId = #{circleid}
+            </if>
+            <if test="questioncontent != null and questioncontent != ''">
+                and questionContent = #{questioncontent}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="QuestioninfoMap">
+        select
+        questionId, circleId, questionContent
+        from circle_blue.questioninfo
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="questionid" useGeneratedKeys="true">
+        insert into circle_blue.questioninfo(circleId, questionContent)
+        values (#{circleid}, #{questioncontent})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="questionid" useGeneratedKeys="true">
+        insert into circle_blue.questioninfo(circleId, questionContent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.circleid}, #{entity.questioncontent})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="questionid" useGeneratedKeys="true">
+        insert into circle_blue.questioninfo(circleId, questionContent)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.circleid}, #{entity.questioncontent})
+        </foreach>
+        on duplicate key update
+        circleId = values(circleId) , questionContent = values(questionContent)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update circle_blue.questioninfo
+        <set>
+            <if test="circleid != null">
+                circleId = #{circleid},
+            </if>
+            <if test="questioncontent != null and questioncontent != ''">
+                questionContent = #{questioncontent},
+            </if>
+        </set>
+        where questionId = #{questionid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from circle_blue.questioninfo where questionId = #{questionid}
+    </delete>
+
+</mapper>

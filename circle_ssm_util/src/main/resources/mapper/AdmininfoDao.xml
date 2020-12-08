@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.geminix.circle.util.dao.AdmininfoDao">
+
+    <resultMap type="top.geminix.circle.util.entity.Admininfo" id="AdmininfoMap">
+        <result property="adminId" column="adminId" jdbcType="INTEGER"/>
+        <result property="adminName" column="adminName" jdbcType="VARCHAR"/>
+        <result property="adminPassword" column="adminPassword" jdbcType="VARCHAR"/>
+        <result property="adminTelephone" column="adminTelephone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AdmininfoMap">
+        select
+        adminId, adminName, adminPassword, adminTelephone
+        from circle_blue.admininfo
+        where adminId = #{adminid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AdmininfoMap">
+        select
+        adminId, adminName, adminPassword, adminTelephone
+        from circle_blue.admininfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AdmininfoMap">
+        select
+        adminId, adminName, adminPassword, adminTelephone
+        from circle_blue.admininfo
+        <where>
+            <if test="adminid != null">
+                and adminId = #{adminid}
+            </if>
+            <if test="adminname != null and adminname != ''">
+                and adminName = #{adminname}
+            </if>
+            <if test="adminpassword != null and adminpassword != ''">
+                and adminPassword = #{adminpassword}
+            </if>
+            <if test="admintelephone != null and admintelephone != ''">
+                and adminTelephone = #{admintelephone}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="AdmininfoMap">
+        select
+        adminId, adminName, adminPassword, adminTelephone
+        from circle_blue.admininfo
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="adminid" useGeneratedKeys="true">
+        insert into circle_blue.admininfo(adminName, adminPassword, adminTelephone)
+        values (#{adminname}, #{adminpassword}, #{admintelephone})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="adminid" useGeneratedKeys="true">
+        insert into circle_blue.admininfo(adminName, adminPassword, adminTelephone)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.adminname}, #{entity.adminpassword}, #{entity.admintelephone})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="adminid" useGeneratedKeys="true">
+        insert into circle_blue.admininfo(adminName, adminPassword, adminTelephone)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.adminname}, #{entity.adminpassword}, #{entity.admintelephone})
+        </foreach>
+        on duplicate key update
+        adminName = values(adminName) , adminPassword = values(adminPassword) , adminTelephone = values(adminTelephone)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update circle_blue.admininfo
+        <set>
+            <if test="adminname != null and adminname != ''">
+                adminName = #{adminname},
+            </if>
+            <if test="adminpassword != null and adminpassword != ''">
+                adminPassword = #{adminpassword},
+            </if>
+            <if test="admintelephone != null and admintelephone != ''">
+                adminTelephone = #{admintelephone},
+            </if>
+        </set>
+        where adminId = #{adminid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from circle_blue.admininfo where adminId = #{adminid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.geminix.circle.util.dao.LabelinfoDao">
+
+    <resultMap type="top.geminix.circle.util.entity.Labelinfo" id="LabelinfoMap">
+        <result property="labelId" column="labelId" jdbcType="INTEGER"/>
+        <result property="sortId" column="sortId" jdbcType="INTEGER"/>
+        <result property="labelName" column="labelName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LabelinfoMap">
+        select
+        labelId, sortId, labelName
+        from circle_blue.labelinfo
+        where labelId = #{labelid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LabelinfoMap">
+        select
+        labelId, sortId, labelName
+        from circle_blue.labelinfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LabelinfoMap">
+        select
+        labelId, sortId, labelName
+        from circle_blue.labelinfo
+        <where>
+            <if test="labelid != null">
+                and labelId = #{labelid}
+            </if>
+            <if test="sortid != null">
+                and sortId = #{sortid}
+            </if>
+            <if test="labelname != null and labelname != ''">
+                and labelName = #{labelname}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="LabelinfoMap">
+        select
+        labelId, sortId, labelName
+        from circle_blue.labelinfo
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="labelid" useGeneratedKeys="true">
+        insert into circle_blue.labelinfo(sortId, labelName)
+        values (#{sortid}, #{labelname})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="labelid" useGeneratedKeys="true">
+        insert into circle_blue.labelinfo(sortId, labelName)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sortid}, #{entity.labelname})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="labelid" useGeneratedKeys="true">
+        insert into circle_blue.labelinfo(sortId, labelName)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sortid}, #{entity.labelname})
+        </foreach>
+        on duplicate key update
+        sortId = values(sortId) , labelName = values(labelName)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update circle_blue.labelinfo
+        <set>
+            <if test="sortid != null">
+                sortId = #{sortid},
+            </if>
+            <if test="labelname != null and labelname != ''">
+                labelName = #{labelname},
+            </if>
+        </set>
+        where labelId = #{labelid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from circle_blue.labelinfo where labelId = #{labelid}
+    </delete>
+
+</mapper>
