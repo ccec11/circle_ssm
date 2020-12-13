@@ -32,13 +32,13 @@ public class NewsInfo {
             newsStatusStr = "已发布";
         }
         if (newsStatus == 0) {
-            newsStatusStr = "已驳回";
+            newsStatusStr = "待审核";
         }
         if (newsStatus == -1) {
             newsStatusStr = "已封禁";
         }
         if (newsStatus == 2) {
-            newsStatusStr = "等待审核";
+            newsStatusStr = "已经驳回";
         }
         return newsStatusStr;
     }

@@ -82,7 +82,7 @@
 							<i class="fa fa-circle-o"></i> 标签管理
 					</a></li>
 					<li id="system-setting5"><a
-						href="${pageContext.request.contextPath}/news/getAll.do"> <i
+						href="${pageContext.request.contextPath}/news/getAllWait.do"> <i
 							class="fa fa-circle-o"></i> 资讯管理
 					</a></li>
 

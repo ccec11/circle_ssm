@@ -8,7 +8,11 @@ import java.util.List;
 
 
 public interface ILabelInfoDao {
-
+    /**
+     *
+     * @Author Zachary
+     * @return
+     */
     @Select("select * from labelinfo")
     @Results({
             @Result(property = "labelId", column = "labelId"),
@@ -31,7 +35,7 @@ public interface ILabelInfoDao {
     /**
      * 新建标签功能 这个有点复杂：
      * 实现这个功能之前 应该先查出所有的 标签信息  要不然怎么选择分类？
-     *
+     * @Author Zachary
      * @param sortId
      * @param labelName
      * @return
@@ -39,12 +43,30 @@ public interface ILabelInfoDao {
     @Insert("insert into labelinfo values(null,#{sortId},#{labelName})")
     boolean addLabelInfo(@Param("sortId") Integer sortId, @Param("labelName") String labelName);
 
+    /**
+     *
+     * @param labelId
+     * @param sortId
+     * @param labelName
+     * @return
+     */
     @Insert("insert into labelinfo values(null,#{sortId},#{labelName})")
     boolean addTest(@Param("labelId") Integer labelId, @Param("sortId") Integer sortId, @Param("labelName") String labelName);
 
+    /**
+     * 获取分类标签
+     * @return
+     */
     @Select(" SELECT * FROM labelinfo WHERE labelId = labelinfo.sortId ")
     List<LabelInfo> getLabelCategory();
 
+    /**
+     * //FIXME 不能直接删除 应该假删除
+     * 根据id删除一个标签
+     * @Author Zachary
+     * @param labelId
+     * @return
+     */
     @Delete(" DELETE FROM labelinfo WHERE labelId = #{labelId} ")
     boolean removeLabelInfo(Integer labelId);
 }

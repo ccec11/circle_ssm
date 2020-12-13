@@ -14,7 +14,8 @@ public class LabelInfo implements Serializable {
     private Integer labelId;
     private String labelName;
     private LabelInfo sortLabelInfo;//父 标签
-//    private String sortID;//自关联的 指向自身
+//    private Integer sortID;//自关联的 指向自身
+//    private String sortLabelName;
 
 
 }

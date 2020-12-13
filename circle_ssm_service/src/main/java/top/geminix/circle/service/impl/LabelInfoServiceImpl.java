@@ -31,6 +31,11 @@ public class LabelInfoServiceImpl implements ILabelInfoService {
         return labelInfoDao.getLabelCategory();
     }
 
+    /**
+     * //FIXME 不能直接删除 应该假删除
+     * @param labelId
+     * @return
+     */
     @Override
     public boolean removeLabelInfo(Integer labelId) {
         return labelInfoDao.removeLabelInfo(labelId);

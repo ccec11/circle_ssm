@@ -2,6 +2,7 @@ package top.geminix.circle.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import top.geminix.circle.dao.ICircleInfoDao;
 import top.geminix.circle.dao.IRefusalInfoDao;
 import top.geminix.circle.domain.CircleInfo;
@@ -11,6 +12,7 @@ import top.geminix.circle.service.ICircleInfoService;
 import java.util.List;
 
 @Service
+@Transactional
 public class CircleInfoServiceImpl implements ICircleInfoService {
     @Autowired
     private ICircleInfoDao circleInfoDao;
@@ -18,13 +20,13 @@ public class CircleInfoServiceImpl implements ICircleInfoService {
     private IRefusalInfoDao refusalInfoDao;
 
     @Override
-    public boolean modifyCircleStatusToNormal(Integer circleId,Integer circleStatus) {
-        return circleInfoDao.modifyCircleStatusToNormal(circleId,circleStatus);
+    public boolean modifyCircleStatusToNormal(Integer circleId, Integer circleStatus) {
+        return circleInfoDao.modifyCircleStatusToNormal(circleId, circleStatus);
     }
 
     @Override
-    public boolean modifyCircleStatusToBanned(Integer circleId,Integer circleStatus) {
-        return circleInfoDao.modifyCircleStatusToBanned(circleId,circleStatus);
+    public boolean modifyCircleStatusToBanned(Integer circleId, Integer circleStatus) {
+        return circleInfoDao.modifyCircleStatusToBanned(circleId, circleStatus);
     }
 
     @Override
@@ -42,15 +44,36 @@ public class CircleInfoServiceImpl implements ICircleInfoService {
         return circleInfoDao.getInvalidCircleInfo(circleStatus);
     }
 
-
+    /**
+     * 驳回圈子请求 和 保存驳回信息合并了
+     *
+     * @param circleId
+     * @return
+     */
     @Override
-    public boolean modifyCircleStatusToDenied(Integer circleId,Integer circleStatus) {
-        return circleInfoDao.modifyCircleStatusToDenied(circleId,circleStatus);
+    @Deprecated
+    public boolean modifyCircleStatusToDenied(Integer circleId) {
+        return circleInfoDao.modifyCircleStatusToDenied(circleId);
     }
 
+//
+
+    /**
+     * FIXME 使用Transactional控制2个的提交
+     * 如果保存信息成功 但是更改状态失败 name还是要返回false 但是驳回信息已经提交了 很麻烦 事务需要回滚
+     * @param refusalCircleInfo
+     * @return
+     */
     @Override
     public boolean saveRefusalCircleInfo(RefusalCircleInfo refusalCircleInfo) {
-        return refusalInfoDao.saveRefusalCircleInfo(refusalCircleInfo);
+        Integer circleId = refusalCircleInfo.getCircleId();
+        boolean saveResult = false;
+        boolean modifyStatusResult = false;
+        saveResult = refusalInfoDao.saveRefusalCircleInfo(refusalCircleInfo);
+        if (saveResult) {//保存信息成功之后才会改状态
+            modifyStatusResult = circleInfoDao.modifyCircleStatusToDenied(circleId);
+        }
+        return saveResult && modifyStatusResult;
     }
 
     @Override

@@ -261,7 +261,6 @@
         // alert("refuse..");
         // var reason = prompt("请输入驳回原因");
         // alert(reason);
-        // TODO 异步提交表单-保存驳回原因
 
         <%--$.post("${pageContext.request.contextPath}/")--%>
     });

@@ -16,8 +16,7 @@ public interface ICircleInfoService {
 
     List<CircleInfo> getInvalidCircleInfo(Integer circleStatus);
 
-
-    boolean modifyCircleStatusToDenied(Integer circleId,Integer circleStatus);
+    boolean modifyCircleStatusToDenied(Integer circleId);
 
     boolean saveRefusalCircleInfo(RefusalCircleInfo refusalCircleInfo);
 

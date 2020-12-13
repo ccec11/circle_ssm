@@ -122,10 +122,10 @@
                                 <td>${newsInfo.newsStatusStr}</td>
                                 <td class="text-center">${newsInfo.releaseDateStr}</td>
                                 <td class="text-center">
+                                    <button type="button" class="btn bg-blue btn-xs" onclick="location='${pageContext.request.contextPath}/news/getSelectJson.do?newsId=${newsInfo.newsId}'">预览</button>
                                     <button type="button" class="btn bg-olive btn-xs" onclick="location='${pageContext.request.contextPath}/news/pass.do?newsId=${newsInfo.newsId}'">通过</button>
-                                    <button type="button" class="btn bg-olive btn-xs" onclick="location='${pageContext.request.contextPath}/news/getSelect.do?newsId=${newsInfo.newsId}'">阅读</button>
-                                    <button type="button" class="btn bg-blue btn-xs" onclick="location='${pageContext.request.contextPath}/news/refuse.do?newsId=${newsInfo.newsId}'">驳回</button>
-                                    <button type="button" class="btn bg-red btn-xs">封禁</button>
+                                    <button type="button" class="btn bg-red btn-xs" onclick="location='${pageContext.request.contextPath}/news/ban.do?newsId=${newsInfo.newsId}'">封禁</button>
+                                    <button type="button" class="btn bg-gray-active btn-xs" onclick="location='${pageContext.request.contextPath}/news/getOne.do?id=${newsInfo.newsId}'">驳回</button>
                                 </td>
                             </tr>
                         </c:forEach>

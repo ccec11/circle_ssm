@@ -5,7 +5,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>驳回圈子请求</title>
+    <title>驳回资讯信息</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -57,7 +57,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">创圈审核</a></li>
+                <li><a href="#">资讯管理</a></li>
                 <li class="active">保存驳回原因</li>
             </ol>
         </section>
@@ -73,11 +73,11 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="${pageContext.request.contextPath}/circle/saveReason.do?" method="post">
+                        <form role="form" action="${pageContext.request.contextPath}/news/saveReason.do?" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>圈子ID</label>
-                                    <input type="text" name="circleId" value=${circleInfo.circleId} class="form-control" placeholder="" readonly="true">
+                                    <label>资讯ID</label>
+                                    <input type="text" name="newsId" value=${newsInfo.newsId} class="form-control" placeholder="" readonly="true">
                                 </div>
 
                                 <div class="form-group">

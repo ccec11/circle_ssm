@@ -11,6 +11,5 @@ public interface ILabelInfoService {
     boolean addLabelInfo(Integer sortId, String labelName);
 
     List<LabelInfo> getLabelCategory();
-
     boolean removeLabelInfo(Integer labelId);
 }

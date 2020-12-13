@@ -10,13 +10,29 @@ import java.util.List;
 
 public interface IBadWordInfoDao {
 
-
+    /**
+     * 获得所有的敏感词
+     * @Author Zachary
+     * @return
+     */
     @Select("SELECT * FROM badWordInfo")
     List<BadWordInfo> getAllBadWord();
 
+    /**
+     * 添加一个敏感词
+     * @Author Zachary
+     * @param badWordContent
+     * @return
+     */
     @Insert("INSERT INTO badWordInfo values(null,#{badWordContent})")
     boolean addBadWordInfo(@Param("badWordContent") String badWordContent);
 
+    /**
+     * 删除一个敏感词
+     * @Author Zachary
+     * @param badWordId
+     * @return
+     */
     @Delete("DELETE FROM badWordInfo WHERE badWordId = #{badWordId}")
     boolean removeBadWordInfo(Integer badWordId);
 

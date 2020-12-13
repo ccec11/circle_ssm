@@ -9,6 +9,7 @@ import top.geminix.circle.dao.IUserInfoDao;
 import top.geminix.circle.domain.UserInfo;
 import top.geminix.circle.service.IUserInfoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)

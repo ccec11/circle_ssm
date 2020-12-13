@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class GsonTools {
  
-	/**TODO 转换为json字符串
+	/**
 	 * @param src  要转换成json格式的 对象
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class GsonTools {
 	}
  
  
-	/**TODO 转换为指定的 对象
+	/**
 	 * @param jsonString
 	 * @param type 指定对象的类型 ，即 T.class
 	 * @return
@@ -57,7 +57,8 @@ public class GsonTools {
  
 	}
  
-	/**TODO 得到一个List<T> 的集合
+	/**
+	 * 得到一个List<T> 的集合
 	 * @param jsonString json字符串
 	 * @param type  数组的类型 ，即T[].class
 	 * @return
@@ -88,7 +89,8 @@ public class GsonTools {
  
 	}
  
-	/**TODO 将json数据解析为Map<String,Object>集合
+	/**
+	 * 将json数据解析为Map<String,Object>集合
 	 * @param jsonString 
 	 * @return
 	 */

@@ -14,6 +14,7 @@ public class CircleInfo {
 //FIXME 聚合labelId  和userId  是方便保存数据用  聚合labelInfo userInfo 是方便展示数据
     private Integer circleId;
 //    private Integer labelId;
+//    private Integer sortId;
     private LabelInfo labelInfo;//只有单个标签 不知道分类
 //    private Integer userId;
     private UserInfo userInfo;//圈主

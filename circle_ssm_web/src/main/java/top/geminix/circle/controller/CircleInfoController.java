@@ -14,8 +14,7 @@ import top.geminix.circle.service.ICircleInfoService;
 import java.util.Date;
 import java.util.List;
 
-//FIXME 优化getCircleInfo（Integer circleStatus）
-//FIXME 根据传入的参数不同，返回的圈子类型不同 可以减少代码量
+//FIXME 优化getCircleInfo（Integer circleStatus）根据传入的参数不同，返回的圈子类型不同 可以减少代码量
 @Controller
 @RequestMapping("/circle")
 public class CircleInfoController {
@@ -35,7 +34,6 @@ public class CircleInfoController {
     public ModelAndView getBannedCircleInfo() {
         ModelAndView mv = new ModelAndView();
         List<CircleInfo> bannedCircleList = circleInfoService.getBannedCircleInfo(CIRCLE_STATUS_BANNED);
-//      FIXME if List == null 缺少对空值的判断！
         mv.addObject("bannedCircleList", bannedCircleList);
         mv.setViewName("manageCircleStatus");
         return mv;
@@ -74,13 +72,8 @@ public class CircleInfoController {
         return "banFailed";
     }
 
-    @RequestMapping("sth.do")
-    public void toDoSomeThing() {
-
-    }
 
     /**
-     * TODO 查找被举报的 应该是 从举报（资讯、评论、帖子）表中找到圈子信息。
      *
      * @return
      */
@@ -122,17 +115,18 @@ public class CircleInfoController {
     }
 
     /**
-     * 驳回 更改一个圈子状态  然后提交驳回理由
+     * 驳回  提交驳回理由 && 更改一个圈子状态
      * TODO 驳回还要提交驳回的理由
-     * 先点击驳回 异步提交表单；然后弹窗提示输入驳回理由，然后再同步点击提交表单
      *
      * @param circleId
      * @return
      */
     @RequestMapping("/refuse.do")
+    @Deprecated
     public String modifyCircleStatusToDenied(@RequestParam(required = true, name = "id") Integer circleId) {
         boolean flag = false;
-        flag = circleInfoService.modifyCircleStatusToDenied(circleId, CIRCLE_STATUS_BANNED);
+        flag = circleInfoService.modifyCircleStatusToDenied(circleId);
+
         if (flag == true) {
             return "redirect:getInvalid.do";//重新定向到某个getAll的controller上面即可
         }
