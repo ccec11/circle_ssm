@@ -18,16 +18,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="circle_ssm_service" />
     <orderEntry type="module" module-name="circle_ssm_domain" />
-    <orderEntry type="module" module-name="circle_ssm_util" />
     <orderEntry type="module" module-name="circle_ssm_dao" />
-    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-server:1.18" level="project" />
-    <orderEntry type="library" name="Maven: asm:asm:3.1" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-core:1.18" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-grizzly2:1.18" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.grizzly:grizzly-http:2.2.16" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.grizzly:grizzly-framework:2.2.16" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.grizzly:grizzly-http-server:2.2.16" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.grizzly:grizzly-rcm:2.2.16" level="project" />
+    <orderEntry type="module" module-name="circle_ssm_util" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.3" level="project" />

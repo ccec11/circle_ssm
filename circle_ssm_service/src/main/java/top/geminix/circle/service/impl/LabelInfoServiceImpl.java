@@ -28,7 +28,7 @@ public class LabelInfoServiceImpl implements ILabelInfoService {
 
     @Override
     public List<LabelInfo> getLabelCategory() {
-        return labelInfoDao.getLabelCategory();
+        return labelInfoDao.getAllLabelCategory();
     }
 
     /**

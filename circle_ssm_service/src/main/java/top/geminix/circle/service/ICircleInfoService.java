@@ -1,6 +1,7 @@
 package top.geminix.circle.service;
 
 import top.geminix.circle.domain.CircleInfo;
+import top.geminix.circle.domain.LabelInfo;
 import top.geminix.circle.domain.RefusalCircleInfo;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public interface ICircleInfoService {
 
     boolean saveRefusalCircleInfo(RefusalCircleInfo refusalCircleInfo);
 
-    CircleInfo getSelectedCircle(Integer circleId);
+    CircleInfo getCircleById(Integer circleId);
+
+    List<LabelInfo> getAllLabelCategory();
+
+    List<CircleInfo> getCircleInfoByCategory(Integer sortId);
 }

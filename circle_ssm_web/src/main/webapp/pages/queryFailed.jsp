@@ -129,7 +129,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                404 错误页面
+                查询结果集为空
             </h1>
 
             <ol class="breadcrumb">
@@ -148,7 +148,7 @@
                     <h3><i class="fa fa-warning text-yellow"></i> Oops! 页面没有找到.</h3>
 
                     <p>
-                        没有找到你请求的页面, 你可以 <a href="${pageContext.request.contextPath}/pages/main.jsp">返回到后台首页</a> 或者通过搜索查询
+                        查询结果集为空 你可以 <a href="${pageContext.request.contextPath}/pages/main.jsp">返回到后台首页</a> 或者通过搜索查询
                     </p>
 
                     <form class="search-form">

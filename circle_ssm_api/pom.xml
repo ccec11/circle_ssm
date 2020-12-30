@@ -16,6 +16,11 @@
             <artifactId>circle_ssm_service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>top.geminix.circle_ssm</groupId>
+            <artifactId>circle_ssm_util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 

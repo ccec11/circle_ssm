@@ -110,7 +110,21 @@ public interface ICircleInfoDao {
             @Result(property = "submitDate", column = "submitDate"),
             @Result(property = "circleStatus", column = "circleStatus")
     })
-    CircleInfo getSelectedCircle(@Param("circleId") Integer circleId);
+    CircleInfo getCircleById(@Param("circleId") Integer circleId);
+
+//    获取的同时过滤掉一被封禁的圈子、待审核的圈子
+    @Select(" SELECT * FROM circleinfo WHERE labelId = #{sortId} ")
+    @Results({
+            @Result(property = "circleId", column = "circleId"),
+            @Result(property = "labelInfo", column = "labelId", javaType = LabelInfo.class, one = @One(select = "top.geminix.circle.dao.ILabelInfoDao.getByLabelId")),
+            @Result(property = "userInfo", column = "userId", javaType = UserInfo.class, one = @One(select = "top.geminix.circle.dao.IUserInfoDao.getByUserId")),
+            @Result(property = "circleName", column = "circleName"),
+            @Result(property = "circleDescription", column = "circleDescription"),
+            @Result(property = "circleImagePath", column = "circleImagePath"),
+            @Result(property = "submitDate", column = "submitDate"),
+            @Result(property = "circleStatus", column = "circleStatus")
+    })
+    List<CircleInfo> getCircleInfoByCategory(Integer sortId);
 
 //    @Insert(" INSERT INTO refusalcirclerecord (adminId, circleId, refusalDate, refusalReason) VALUES (#{adminId},#{circleId},#{refusalDate},#{refusalReason}) ")
 //    boolean saveRefusalCircleInfo(RefusalCircleInfo refusalCircleInfo);

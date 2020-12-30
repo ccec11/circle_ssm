@@ -58,7 +58,7 @@ public interface ILabelInfoDao {
      * @return
      */
     @Select(" SELECT * FROM labelinfo WHERE labelId = labelinfo.sortId ")
-    List<LabelInfo> getLabelCategory();
+    List<LabelInfo> getAllLabelCategory();
 
     /**
      * //FIXME 不能直接删除 应该假删除

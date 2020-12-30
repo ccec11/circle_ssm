@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import top.geminix.circle.domain.UserInfo;
+import top.geminix.circle.domain.UserJoinCircleRecord;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface IUserInfoDao {
      * @return
      */
     @Update("UPDATE userinfo set userStatus = #{userStatus} WHERE userId = #{userId}")
-    boolean modifyUserStatusToNormal(@Param("userId") Integer userId, @Param("userStatus") Integer userStatus);
+    Boolean modifyUserStatusToNormal(@Param("userId") Integer userId, @Param("userStatus") Integer userStatus);
 
     /**
      * 根据资讯举报信息news_report 找到相关的newsId s ，也就找到了newsInfos
@@ -65,7 +66,7 @@ public interface IUserInfoDao {
      * @return
      */
     @Update("UPDATE userinfo set userStatus = #{userStatus} WHERE userId = #{userId}")
-    boolean modifyUserStatusToBanned(@Param("userId") Integer userId, @Param("userStatus") Integer userStatus);
+    Boolean modifyUserStatusToBanned(@Param("userId") Integer userId, @Param("userStatus") Integer userStatus);
 
     /**安装端 更改用户登录密码
      * @Author Zachary
@@ -73,16 +74,19 @@ public interface IUserInfoDao {
      * @return
      */
     @Update(" UPDATE userinfo SET userPassword = #{userPassword} WHERE userId = #{userId} ")
-    boolean modifyUserPassword(UserInfo userInfo);
+    Boolean modifyUserPassword(UserInfo userInfo);
 
     /**用户进圈答题 通过考试 插入一条记录表示用户加入了圈子
+     * FIXME 建议用一个bean来封装 而不是两个Id
      * @Author Zachary
      * @param userId
      * @param circleId
      * @return
      */
-    //FIXME 建议用一个bean来封装 而不是两个Id
-    @Insert(" INSERT INTO userjoincirclerecord(userId,circleId) VALUES (#{userId}, #{circleId}, 1, NULL) ")
-    boolean addJoinCircleInfo(@Param("userId") Integer userId, @Param("circleId") Integer circleId);
+//    @Insert(" INSERT INTO userjoincirclerecord(userId,circleId) VALUES (#{userId}, #{circleId}, 1, NULL) ")
+    @Insert(" INSERT INTO userjoincirclerecord(userId,circleId) VALUES (#{userId}, #{circleId}) ")
+    Boolean addJoinCircleInfo(@Param("userId") Integer userId, @Param("circleId") Integer circleId);
 
+    @Insert(" INSERT INTO userjoincirclerecord VALUES (#{userId},#{circleId},#{userLevel},#{userJoinDate}) ")
+    Boolean saveJoinCircleInfo(UserJoinCircleRecord userJoinCircleRecord);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.geminix.circle.dao.IUserInfoDao;
 import top.geminix.circle.domain.UserInfo;
+import top.geminix.circle.domain.UserJoinCircleRecord;
 import top.geminix.circle.service.IUserInfoService;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public boolean modifyUserStatusToNormal(Integer userId, Integer userStatus) {
+    public Boolean modifyUserStatusToNormal(Integer userId, Integer userStatus) {
         return userInfoDao.modifyUserStatusToNormal(userId,userStatus);
     }
 
@@ -31,17 +32,23 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
-    public boolean modifyUserStatusToBanned(Integer userId,Integer userStatus) {
+    public Boolean modifyUserStatusToBanned(Integer userId,Integer userStatus) {
         return userInfoDao.modifyUserStatusToBanned(userId,userStatus);
     }
 
     @Override
-    public boolean modifyUserPassword(UserInfo userInfo) {
+    public Boolean modifyUserPassword(UserInfo userInfo) {
         return userInfoDao.modifyUserPassword(userInfo);
     }
 
     @Override
-    public boolean addJoinCircleInfo(Integer userId, Integer circleId) {
+    public Boolean addJoinCircleInfo(Integer userId, Integer circleId) {
         return userInfoDao.addJoinCircleInfo(userId, circleId);
+    }
+
+    @Override
+    public Boolean saveJoinCircleInfo(UserJoinCircleRecord userJoinCircleRecord) {
+
+        return userInfoDao.saveJoinCircleInfo(userJoinCircleRecord);
     }
 }

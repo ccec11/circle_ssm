@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.geminix.circle.dao.ICircleInfoDao;
+import top.geminix.circle.dao.ILabelInfoDao;
 import top.geminix.circle.dao.IRefusalInfoDao;
 import top.geminix.circle.domain.CircleInfo;
+import top.geminix.circle.domain.LabelInfo;
 import top.geminix.circle.domain.RefusalCircleInfo;
 import top.geminix.circle.service.ICircleInfoService;
 
@@ -18,6 +20,9 @@ public class CircleInfoServiceImpl implements ICircleInfoService {
     private ICircleInfoDao circleInfoDao;
     @Autowired
     private IRefusalInfoDao refusalInfoDao;
+    @Autowired
+    private ILabelInfoDao labelInfoDao;
+
 
     @Override
     public boolean modifyCircleStatusToNormal(Integer circleId, Integer circleStatus) {
@@ -77,7 +82,17 @@ public class CircleInfoServiceImpl implements ICircleInfoService {
     }
 
     @Override
-    public CircleInfo getSelectedCircle(Integer circleId) {
-        return circleInfoDao.getSelectedCircle(circleId);
+    public CircleInfo getCircleById(Integer circleId) {
+        return circleInfoDao.getCircleById(circleId);
+    }
+
+    @Override
+    public List<LabelInfo> getAllLabelCategory() {
+        return labelInfoDao.getAllLabelCategory();
+    }
+
+    @Override
+    public List<CircleInfo> getCircleInfoByCategory(Integer sortId) {
+        return circleInfoDao.getCircleInfoByCategory(sortId);
     }
 }

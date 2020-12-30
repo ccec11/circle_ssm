@@ -1,11 +1,6 @@
 package top.geminix.circle.test;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import top.geminix.circle.domain.UserInfo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +58,7 @@ public class CircleInfoTest {
 
     @Test
     public void getOne() {
-        CircleInfo selectedCircle = circleInfoService.getSelectedCircle(1);
+        CircleInfo selectedCircle = circleInfoService.getCircleById(1);
         System.out.println(selectedCircle);
 
     }
