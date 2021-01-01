@@ -68,7 +68,6 @@ public class LabelInfoController {
     @RequestMapping("remove.do")
     public String removeLabelInfo(@RequestParam(name = "id") Integer labelId) {
         boolean removeResult = false;
-//        removeResult = badWordInfoService.removeBadWordInfo(badWordId);
         removeResult = labelInfoService.removeLabelInfo(labelId);
         if (removeResult == true) {
             return "redirect:getAll.do";

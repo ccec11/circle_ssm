@@ -126,6 +126,4 @@ public interface ICircleInfoDao {
     })
     List<CircleInfo> getCircleInfoByCategory(Integer sortId);
 
-//    @Insert(" INSERT INTO refusalcirclerecord (adminId, circleId, refusalDate, refusalReason) VALUES (#{adminId},#{circleId},#{refusalDate},#{refusalReason}) ")
-//    boolean saveRefusalCircleInfo(RefusalCircleInfo refusalCircleInfo);
 }

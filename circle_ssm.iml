@@ -7,6 +7,17 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_dao/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_dao/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_dao/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_domain/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_domain/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_domain/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_service/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/circle_ssm_service/src/main/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/circle_ssm_dao/target" />
+      <excludeFolder url="file://$MODULE_DIR$/circle_ssm_domain/target" />
+      <excludeFolder url="file://$MODULE_DIR$/circle_ssm_service/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

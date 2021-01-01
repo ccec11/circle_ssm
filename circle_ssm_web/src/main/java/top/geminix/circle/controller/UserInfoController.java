@@ -70,28 +70,6 @@ public class UserInfoController {
         return "banFailed";
     }
 
-    /**
-     * 安卓端修改密码的 接口
-     * @param userInfo
-     * @return
-     */
-    @RequestMapping("modifyPassword.do")
-    @ResponseBody
-    public boolean modifyUserPassword(@RequestBody UserInfo userInfo) {
-        boolean modifyResult = false;
-        modifyResult = userInfoService.modifyUserPassword(userInfo);
-
-        return modifyResult;
-    }
-
-    public void addJoinCircleInfo(Integer userId,Integer circleId) {
-        boolean addResult = false;
-        addResult = userInfoService.addJoinCircleInfo(userId, circleId);
-
-    }
-
-
-
 
 
 }

@@ -42,7 +42,6 @@ public interface IUserInfoDao {
      * 就是我们想要找的被举报的相关用户 举报评论 举报帖子 中都有用户
      * @Author Zachary
      */
-//    @Select("SELECT * FROM userinfo WHERE userId IN (SELECT userId FROM newsinfo WHERE newsId IN (SELECT newsId FROM news_report))")
     @Select("SELECT *\n" +
             "FROM userinfo\n" +
             "WHERE userId IN (SELECT userId\n" +
@@ -56,7 +55,7 @@ public interface IUserInfoDao {
             "                 UNION SELECT userId\n" +
             "                       FROM commentsinfo\n" +
             "                       WHERE commentId IN (SELECT commentId\n" +
-            "                                           FROM comment_report));")
+            "                                           FROM comment_report)) ")
     List<UserInfo> getReportedUserInfo();
 
     /**根据用户id 更改状态为 封禁
@@ -89,4 +88,7 @@ public interface IUserInfoDao {
 
     @Insert(" INSERT INTO userjoincirclerecord VALUES (#{userId},#{circleId},#{userLevel},#{userJoinDate}) ")
     Boolean saveJoinCircleInfo(UserJoinCircleRecord userJoinCircleRecord);
+
+    @Select(" SELECT * FROM userinfo WHERE userAccount = #{userAccount} AND userPassword = #{userPassword} ")
+    Boolean checkOldPassword(UserInfo userInfo);
 }

@@ -42,19 +42,19 @@
 					</li>
 
 					<li id="admin-register">
-						<a href="all-admin-register.html">
+						<a href="${pageContext.request.contextPath}/adminRegistInterface.jsp">
 							<i class="fa fa-circle-o"></i> 注册
 						</a>
 					</li>
 
 					<li id="admin-404">
-						<a href="all-admin-404.html">
+						<a href="${pageContext.request.contextPath}/pages/404.jsp">
 							<i class="fa fa-circle-o"></i> 404页
 						</a>
 					</li>
 
 					<li id="admin-500">
-						<a href="all-admin-500.html">
+						<a href="${pageContext.request.contextPath}/pages/500.jsp">
 							<i class="fa fa-circle-o"></i> 500页
 						</a>
 					</li>
@@ -63,7 +63,7 @@
 			</li>
 
 			<li class="treeview"><a href="#"> <i class="fa fa-cogs"></i>
-					<span>基础数据</span> <span class="pull-right-container"> <i
+					<span>数据管理</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
 				</span>
 
@@ -81,11 +81,16 @@
 						href="${pageContext.request.contextPath}/labelInfo/getAll.do">
 							<i class="fa fa-circle-o"></i> 标签管理
 					</a></li>
+
 					<li id="system-setting5"><a
 						href="${pageContext.request.contextPath}/news/getAllWait.do"> <i
 							class="fa fa-circle-o"></i> 资讯管理
 					</a></li>
 
+					<li id="system-setting6"><a
+							href="${pageContext.request.contextPath}/reportInfo/getAll.do"> <i
+							class="fa fa-circle-o"></i> 举报信息
+					</a></li>
 
 				</ul></li>
 

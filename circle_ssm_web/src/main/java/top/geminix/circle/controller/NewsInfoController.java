@@ -37,30 +37,27 @@ public class NewsInfoController {
 
     @RequestMapping("/auto.do")
     public void modifyNewsStatusAuto() {
-        newsInfoService.modifyNewsStatusAuto();
+        List<NewsInfo> newsInfos = newsInfoService.modifyNewsInfoStatusAuto();
+        if (newsInfos != null) {
+            ModelAndView mv = new ModelAndView();
+            mv.addObject("newsInfos", newsInfos);
+            mv.setViewName("");
+            return;
+        }
+        return;
+
     }
 
     @RequestMapping("/pass.do")
     public String modifyNewsStatusToPass(@RequestParam(required = true, name = "newsId") Integer newsId) {
         boolean result = false;
-        result = newsInfoService.modifyNewsStatusToPass(newsId,NEWS_STATUS_PASS);
+        result = newsInfoService.modifyNewsInfoStatusToPass(newsId, NEWS_STATUS_PASS);
         if (result == true) {
             return "redirect:getAllWait.do";
         }
         return "404";
     }
-//驳回新闻 和 驳回圈子一样  需要先进入一个填写理由的界面 或者弹窗
-//    获取管理员 输入的理由  然后提交到保存信息表单的controller 然后再service层 进行保存理由 更改状态等操作
 
-    @RequestMapping("/refuse.do")
-    public String modifyNewsStatusToRefused(@RequestParam(required = true, name = "newsId") Integer newsId) {
-        boolean result = false;
-        result = newsInfoService.modifyNewsStatusToRefused(newsId);
-        if (result == true) {
-            return "redirect:getAllWait.do";
-        }
-        return "404";
-    }
 
     @RequestMapping("/saveReason.do")
     @ResponseBody
@@ -75,7 +72,7 @@ public class NewsInfoController {
     @RequestMapping("/ban.do")
     public String modifyNewsStatusToBanned(@RequestParam(required = true, name = "newsId") Integer newsId) {
         boolean result = false;
-        result = newsInfoService.modifyNewsStatusToBanned(newsId,NEWS_STATUS_BANNED);
+        result = newsInfoService.modifyNewsInfoStatusToBanned(newsId, NEWS_STATUS_BANNED);
         if (result == true) {
             return "redirect:getAllWait.do";
         }
@@ -84,7 +81,7 @@ public class NewsInfoController {
 
     @RequestMapping("/getSelectJson.do")
     @ResponseBody
-    public String getSelectedNewsJson(@RequestParam(required = true,name = "newsId") Integer newsId) {
+    public String getSelectedNewsJson(@RequestParam(required = true, name = "newsId") Integer newsId) {
         NewsInfo newsInfo = newsInfoService.getSelectedNews(newsId);
         String newsContent = newsInfo.getNewsContent();
         return newsContent;
@@ -92,7 +89,7 @@ public class NewsInfoController {
     }
 
     @RequestMapping("/getSelect.do")
-    public ModelAndView getSelectedNewsTest(@RequestParam(required = true,name = "newsId") Integer newsId) {
+    public ModelAndView getSelectedNewsTest(@RequestParam(required = true, name = "newsId") Integer newsId) {
         NewsInfo newsInfo = newsInfoService.getSelectedNews(newsId);
         ModelAndView mv = new ModelAndView();
 
@@ -102,13 +99,12 @@ public class NewsInfoController {
     }
 
     @RequestMapping("/getOne.do")
-    public ModelAndView getSelectedNewsInfo(@RequestParam(required = true,name = "id") Integer newsId) {
+    public ModelAndView getSelectedNewsInfo(@RequestParam(required = true, name = "id") Integer newsId) {
         NewsInfo newsInfo = newsInfoService.getSelectedNews(newsId);
 //        结果合法性判断
         ModelAndView mv = new ModelAndView();
         if (newsInfo != null) {
-            mv.addObject("newsInfo",newsInfo);
-//            mv.setViewName("saveRefusalCircleInfo");
+            mv.addObject("newsInfo", newsInfo);
             mv.setViewName("saveRefusalNewsInfo");
             return mv;
         }

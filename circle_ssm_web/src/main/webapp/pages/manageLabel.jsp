@@ -116,8 +116,7 @@
                                 <td>${circleInfo.sortLabelInfo.labelName}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs">更新</button>
-                                    <button type="button" class="btn bg-olive btn-xs">设置停用</button>
-                                    <button type="button" class="btn bg-olive btn-xs">更多操作</button>
+                                    <%--<button type="button" class="btn bg-olive btn-xs">设置停用</button>--%>
                                     <%--在这里添加同步的更新操作执行！--%>
                                     <button type="button" class="btn bg-red  btn-xs" onclick="location.href='${pageContext.request.contextPath}/labelInfo/remove.do?id=${circleInfo.labelId}'">删除</button>
                                 </td>

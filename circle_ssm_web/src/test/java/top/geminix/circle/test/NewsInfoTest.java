@@ -33,8 +33,8 @@ public class NewsInfoTest {
 
     @Test
     public void refusedTest() {
-        boolean b = newsInfoService.modifyNewsStatusToRefused(1);
-        System.out.println(b);
+//        boolean b = newsInfoService.modifyNewsInfoStatusToRefused(1);
+//        System.out.println(b);
     }
 
     @Test

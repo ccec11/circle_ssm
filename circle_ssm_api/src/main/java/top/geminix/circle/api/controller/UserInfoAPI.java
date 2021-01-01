@@ -1,4 +1,4 @@
-package top.geminix.circle.api;
+package top.geminix.circle.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +17,25 @@ public class UserInfoAPI {
     @Autowired
     private IUserInfoService userInfoService;
 
+    /**
+     * 安卓端 用于检验旧密码是否正确的功能
+     * @param userInfo
+     * @return
+     */
+    @RequestMapping("/checkOldPassword.do")
+    @ResponseBody
+    public Boolean checkOldPassword(@RequestBody UserInfo userInfo) {
+        Boolean checkResult = userInfoService.checkOldPassword(userInfo);
+        return checkResult;
+
+    }
+
+
+    /**
+     * 安卓端修改密码的 接口
+     * @param userInfo
+     * @return
+     */
     @RequestMapping("/modifyPassword.do")
     @ResponseBody
     public boolean modifyUserPassword(@RequestBody UserInfo userInfo) {
@@ -46,6 +65,14 @@ public class UserInfoAPI {
         Boolean result =false;
         result = userInfoService.saveJoinCircleInfo(userJoinCircleRecord);
         return result;
+    }
+
+
+    @RequestMapping("/join.do")
+    public void addJoinCircleInfo(Integer userId,Integer circleId) {
+        boolean addResult = false;
+        addResult = userInfoService.addJoinCircleInfo(userId, circleId);
+
     }
 
 

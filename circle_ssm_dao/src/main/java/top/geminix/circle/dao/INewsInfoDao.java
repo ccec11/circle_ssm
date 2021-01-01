@@ -13,7 +13,7 @@ public interface INewsInfoDao {
      * @Author Zachary
      * @return
      */
-    List<NewsInfo> modifyNewsStatusAuto();
+    List<NewsInfo> modifyNewsInfoStatusAuto();
 
     /**
      * @Author Zachary
@@ -30,7 +30,7 @@ public interface INewsInfoDao {
      * @return
      */
     @Update(" UPDATE newsinfo SET newsStatus = #{newsStatus} WHERE newsId = #{newsId} ")
-    boolean modifyNewsStatusToPass(@Param("newsId")Integer newsId, @Param("newsStatus")Integer newsStatus);
+    boolean modifyNewsInfoStatusToPass(@Param("newsId")Integer newsId, @Param("newsStatus")Integer newsStatus);
 
 
 

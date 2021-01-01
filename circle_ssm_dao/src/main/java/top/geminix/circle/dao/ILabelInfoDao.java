@@ -55,6 +55,7 @@ public interface ILabelInfoDao {
 
     /**
      * 获取分类标签
+     * @Author Zachary
      * @return
      */
     @Select(" SELECT * FROM labelinfo WHERE labelId = labelinfo.sortId ")

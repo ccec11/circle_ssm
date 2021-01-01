@@ -8,12 +8,14 @@ import java.util.List;
 public interface INewsInfoService {
     /**
      * 自动审核功能
+     * @Author Zachary
      * @return
      */
-    List<NewsInfo> modifyNewsStatusAuto();
+    List<NewsInfo> modifyNewsInfoStatusAuto();
 
     /**
      * 获取所有待审核
+     * @Author Zachary
      * @param newsStatus
      * @return
      */
@@ -21,33 +23,37 @@ public interface INewsInfoService {
 
 
     /**
+     * @Author Zachary
      * 将一条资讯更改为 “已发布”
      * @param newsId
      * @param newsStatus
      * @return
      */
-    boolean modifyNewsStatusToPass(Integer newsId,Integer newsStatus);
+    boolean modifyNewsInfoStatusToPass(Integer newsId,Integer newsStatus);
 
 
     /**
      * 驳回资讯 将一条资讯状态更改为 “已封禁”
+     * 已经停用，该服务和 保存驳回信息一起使用
+     * @Author Zachary
      * @param newsId
      * @return
      */
     @Deprecated
-    boolean modifyNewsStatusToRefused(Integer newsId);
+    boolean modifyNewsInfoStatusToRefused(Integer newsId);
 
     /**
      * 封禁资讯 将一条资讯状态更改为 “已封禁”
+     * @Author Zachary
      * @param newsId
      * @param newsStatus
      * @return
      */
-    boolean modifyNewsStatusToBanned(Integer newsId,Integer newsStatus);
+    boolean modifyNewsInfoStatusToBanned(Integer newsId,Integer newsStatus);
 
     /**
-     * @Author Zachary
      * 根据id获取资讯信息
+     * @Author Zachary
      * @param newsId
      * @return
      */
@@ -55,6 +61,7 @@ public interface INewsInfoService {
 
     /**
      * 保存驳回 资讯信息理由 功能
+     * @Author Zachary
      * @param refusalNewsInfo
      * @return
      */

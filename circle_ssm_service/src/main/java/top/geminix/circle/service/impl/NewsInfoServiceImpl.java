@@ -23,8 +23,8 @@ public class NewsInfoServiceImpl implements INewsInfoService {
      * @return
      */
     @Override
-    public List<NewsInfo> modifyNewsStatusAuto() {
-        return null;
+    public List<NewsInfo> modifyNewsInfoStatusAuto() {
+        return newsInfoDao.modifyNewsInfoStatusAuto();
     }
 
     @Override
@@ -33,13 +33,13 @@ public class NewsInfoServiceImpl implements INewsInfoService {
     }
 
     @Override
-    public boolean modifyNewsStatusToPass(Integer newsId, Integer newsStatus) {
-        return newsInfoDao.modifyNewsStatusToPass(newsId, newsStatus);
+    public boolean modifyNewsInfoStatusToPass(Integer newsId, Integer newsStatus) {
+        return newsInfoDao.modifyNewsInfoStatusToPass(newsId, newsStatus);
     }
 
     @Override
     @Deprecated
-    public boolean modifyNewsStatusToRefused(Integer newsId) {
+    public boolean modifyNewsInfoStatusToRefused(Integer newsId) {
         newsInfoDao.modifyNewsStatusToRefused(newsId);//写死了 -1
         return false;
     }
@@ -58,7 +58,7 @@ public class NewsInfoServiceImpl implements INewsInfoService {
     }
 
     @Override
-    public boolean modifyNewsStatusToBanned(Integer newsId, Integer newsStatus) {
+    public boolean modifyNewsInfoStatusToBanned(Integer newsId, Integer newsStatus) {
         return newsInfoDao.modifyNewsStatusToBanned(newsId,newsStatus);
     }
 

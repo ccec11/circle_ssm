@@ -37,6 +37,11 @@ public class UserInfoServiceImpl implements IUserInfoService {
     }
 
     @Override
+    public Boolean checkOldPassword(UserInfo userInfo) {
+        return userInfoDao.checkOldPassword(userInfo);
+    }
+
+    @Override
     public Boolean modifyUserPassword(UserInfo userInfo) {
         return userInfoDao.modifyUserPassword(userInfo);
     }
